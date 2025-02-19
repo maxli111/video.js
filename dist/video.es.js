@@ -10437,7 +10437,6 @@ var TextTrackDisplay = /*#__PURE__*/function (_Component) {
       var cueDiv = cue.displayState;
       cueDiv.firstChild.className = 'video-cue-text';
       cueDiv.firstChild.innerHTML = cueDiv.innerText + '<i>' + cueDiv.innerText + '</i>';
-      overrides.color = {};
       if (overrides.color) {
         cueDiv.firstChild.style.color = overrides.color;
       }
