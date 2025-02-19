@@ -317,6 +317,9 @@ class TextTrackDisplay extends Component {
 
       cueDiv.firstChild.className = 'video-cue-text';
       cueDiv.firstChild.innerHTML = cueDiv.innerText + '<i>' + cueDiv.innerText + '</i>';
+      // eslint-disable-next-line
+      console.log(darkGray, lightGray, fontMap, tryUpdateStyle, overrides);
+      /*
       if (overrides.color) {
         cueDiv.firstChild.style.color = overrides.color;
       }
@@ -379,6 +382,7 @@ class TextTrackDisplay extends Component {
           cueDiv.firstChild.style.fontFamily = fontMap[overrides.fontFamily];
         }
       }
+        */
     }
   }
 

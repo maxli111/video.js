@@ -10179,32 +10179,6 @@ var fontMap = {
 };
 
 /**
- * Construct an rgba color from a given hex color code.
- *
- * @param {number} color
- *        Hex number for color, like #f0e or #f604e2.
- *
- * @param {number} opacity
- *        Value for opacity, 0.0 - 1.0.
- *
- * @return {string}
- *         The rgba color that was created, like 'rgba(255, 0, 0, 0.3)'.
- */
-function constructColor(color, opacity) {
-  var hex;
-  if (color.length === 4) {
-    // color looks like "#f0e"
-    hex = color[1] + color[1] + color[2] + color[2] + color[3] + color[3];
-  } else if (color.length === 7) {
-    // color looks like "#f604e2"
-    hex = color.slice(1);
-  } else {
-    throw new Error('Invalid color code provided, ' + color + '; must be formatted as e.g. #f0e or #f604e2.');
-  }
-  return 'rgba(' + parseInt(hex.slice(0, 2), 16) + ',' + parseInt(hex.slice(2, 4), 16) + ',' + parseInt(hex.slice(4, 6), 16) + ',' + opacity + ')';
-}
-
-/**
  * Try to update the style of a DOM element. Some style changes will throw an error,
  * particularly in IE8. Those should be noops.
  *
@@ -10456,39 +10430,60 @@ var TextTrackDisplay = /*#__PURE__*/function (_Component) {
       var cueDiv = cue.displayState;
       cueDiv.firstChild.className = 'video-cue-text';
       cueDiv.firstChild.innerHTML = cueDiv.innerText + '<i>' + cueDiv.innerText + '</i>';
+      // eslint-disable-next-line
+      console.log(darkGray, lightGray, fontMap, tryUpdateStyle, overrides);
+      /*
       if (overrides.color) {
         cueDiv.firstChild.style.color = overrides.color;
       }
       if (overrides.textOpacity) {
-        tryUpdateStyle(cueDiv.firstChild, 'color', constructColor(overrides.color || '#fff', overrides.textOpacity));
+        tryUpdateStyle(
+          cueDiv.firstChild,
+          'color',
+          constructColor(
+            overrides.color || '#fff',
+            overrides.textOpacity
+          )
+        );
       }
       if (overrides.backgroundColor) {
         cueDiv.firstChild.style.backgroundColor = overrides.backgroundColor;
       }
       if (overrides.backgroundOpacity) {
-        tryUpdateStyle(cueDiv.firstChild, 'backgroundColor', constructColor(overrides.backgroundColor || '#000', overrides.backgroundOpacity));
+        tryUpdateStyle(
+          cueDiv.firstChild,
+          'backgroundColor',
+          constructColor(
+            overrides.backgroundColor || '#000',
+            overrides.backgroundOpacity
+          )
+        );
       }
       if (overrides.windowColor) {
         if (overrides.windowOpacity) {
-          tryUpdateStyle(cueDiv, 'backgroundColor', constructColor(overrides.windowColor, overrides.windowOpacity));
+          tryUpdateStyle(
+            cueDiv,
+            'backgroundColor',
+            constructColor(overrides.windowColor, overrides.windowOpacity)
+          );
         } else {
           cueDiv.style.backgroundColor = overrides.windowColor;
         }
       }
       if (overrides.edgeStyle) {
         if (overrides.edgeStyle === 'dropshadow') {
-          cueDiv.firstChild.style.textShadow = "2px 2px 3px " + darkGray + ", 2px 2px 4px " + darkGray + ", 2px 2px 5px " + darkGray;
+          cueDiv.firstChild.style.textShadow = `2px 2px 3px ${darkGray}, 2px 2px 4px ${darkGray}, 2px 2px 5px ${darkGray}`;
         } else if (overrides.edgeStyle === 'raised') {
-          cueDiv.firstChild.style.textShadow = "1px 1px " + darkGray + ", 2px 2px " + darkGray + ", 3px 3px " + darkGray;
+          cueDiv.firstChild.style.textShadow = `1px 1px ${darkGray}, 2px 2px ${darkGray}, 3px 3px ${darkGray}`;
         } else if (overrides.edgeStyle === 'depressed') {
-          cueDiv.firstChild.style.textShadow = "1px 1px " + lightGray + ", 0 1px " + lightGray + ", -1px -1px " + darkGray + ", 0 -1px " + darkGray;
+          cueDiv.firstChild.style.textShadow = `1px 1px ${lightGray}, 0 1px ${lightGray}, -1px -1px ${darkGray}, 0 -1px ${darkGray}`;
         } else if (overrides.edgeStyle === 'uniform') {
-          cueDiv.firstChild.style.textShadow = "0 0 4px " + darkGray + ", 0 0 4px " + darkGray + ", 0 0 4px " + darkGray + ", 0 0 4px " + darkGray;
+          cueDiv.firstChild.style.textShadow = `0 0 4px ${darkGray}, 0 0 4px ${darkGray}, 0 0 4px ${darkGray}, 0 0 4px ${darkGray}`;
         }
       }
       if (overrides.fontPercent && overrides.fontPercent !== 1) {
-        var fontSize = window__default["default"].parseFloat(cueDiv.style.fontSize);
-        cueDiv.style.fontSize = fontSize * overrides.fontPercent + 'px';
+        const fontSize = window.parseFloat(cueDiv.style.fontSize);
+         cueDiv.style.fontSize = (fontSize * overrides.fontPercent) + 'px';
         cueDiv.style.height = 'auto';
         cueDiv.style.top = 'auto';
       }
@@ -10499,6 +10494,7 @@ var TextTrackDisplay = /*#__PURE__*/function (_Component) {
           cueDiv.firstChild.style.fontFamily = fontMap[overrides.fontFamily];
         }
       }
+        */
     }
   }
 
